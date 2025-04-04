@@ -116,6 +116,50 @@ mvn clean install
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## Continuous Integration and Deployment
+
+This project uses GitHub Actions for continuous integration and deployment. The workflow is defined in `.github/workflows/maven.yml` and includes:
+
+1. **Build and Test Process**:
+   - Runs on every push to `main` and on pull requests
+   - Sets up JDK 21 using Temurin distribution
+   - Builds the project using Maven
+   - Runs all tests with coverage reporting
+
+2. **Code Coverage**:
+   - Uses JaCoCo for test coverage reporting
+   - Generates coverage reports in `target/site/jacoco/`
+   - Uploads coverage reports as workflow artifacts
+   - Fails the build if line coverage falls below 80%
+
+3. **Coverage Badges**:
+   - Uses `cicirello/jacoco-badge-generator` to create dynamic coverage badges
+   - Generates both line coverage and branch coverage badges
+   - Automatically updates badges after each build
+   - Stores badges in the `badges` directory
+
+### Required Permissions
+
+To enable the automatic badge updates, you need to configure the following permissions:
+
+1. Go to your repository's Settings
+2. Navigate to Actions > General
+3. Under "Workflow permissions", select:
+   - "Read and write permissions"
+   - "Allow GitHub Actions to create and approve pull requests"
+
+This configuration allows the workflow to:
+- Commit and push updated coverage badges
+- Create pull requests if needed
+- Access repository contents for badge generation
+
+### Workflow Artifacts
+
+After each build, you can find:
+- Coverage reports in the workflow artifacts
+- Updated coverage badges in the `badges` directory
+- Build status and coverage information in the README badges
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details. 
