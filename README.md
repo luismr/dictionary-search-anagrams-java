@@ -3,6 +3,8 @@
 [![Java 21](https://img.shields.io/badge/Java-21-blue.svg)](https://www.java.com)
 [![Maven 3](https://img.shields.io/badge/Maven-3-blue.svg)](https://maven.apache.org)
 [![JUnit 5](https://img.shields.io/badge/JUnit-5-blue.svg)](https://junit.org/junit5/)
+[![JaCoCo 0.8.x](https://img.shields.io/badge/JaCoCo-Coverage-blue.svg)](https://www.jacoco.org/jacoco/)
+[![Build Status](https://github.com/yourusername/dictionary-search-anagrams-java/actions/workflows/maven.yml/badge.svg)](https://github.com/yourusername/dictionary-search-anagrams-java/actions/workflows/maven.yml)
 
 A Java library for searching anagrams in a dictionary with different implementations.
 
@@ -48,6 +50,18 @@ The project includes comprehensive test coverage for all implementations:
 - Base test class `DictionarySearchTest` with common test cases
 - Implementation-specific test classes extending the base test
 - Additional tests for caching and expiration functionality
+- JaCoCo test coverage reporting with minimum 80% line coverage requirement
+
+### Running Tests with Coverage
+
+```bash
+mvn clean test
+```
+
+This will:
+1. Run all tests
+2. Generate a coverage report in `target/site/jacoco/`
+3. Fail the build if line coverage is below 80%
 
 ## Project Structure
 
