@@ -24,4 +24,24 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: coverage-report
-        path: target/site/jacoco/ 
+        path: target/site/jacoco/
+    - name: Generate coverage badge
+      run: |
+        COVERAGE=$(grep -oP '(?<=<td>Total<\/td><td class="bar">)[^<]+' target/site/jacoco/index.html)
+        echo "coverage=$COVERAGE" >> $GITHUB_ENV
+    - name: Create coverage badge
+      uses: schneegans/dynamic-badges-action@v1.7.0
+      with:
+        auth: ${{ secrets.GITHUB_TOKEN }}
+        name: coverage
+        label: Coverage
+        value: ${{ env.coverage }}
+        color: green
+        path: badges/coverage.svg
+    - name: Commit coverage badge
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add badges/coverage.svg
+        git commit -m "Update coverage badge" || exit 0
+        git push 
