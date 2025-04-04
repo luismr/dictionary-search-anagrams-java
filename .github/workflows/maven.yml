@@ -24,15 +24,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: coverage-report
-        path: target/site/jacoco/
-    - name: Generate coverage badge
-      run: |
-        COVERAGE=$(grep -oP '(?<=<td>Total<\/td><td class="bar">)[^<]+' target/site/jacoco/index.html | sed 's/%//')
-        echo "coverage=$COVERAGE" >> $GITHUB_ENV
-        echo "::set-output name=coverage::$COVERAGE"
-    - name: Create coverage badge
-      uses: codecov/codecov-action@v3
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: target/site/jacoco/jacoco.xml
-        fail_ci_if_error: true 
+        path: target/site/jacoco/ 
