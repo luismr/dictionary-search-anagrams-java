@@ -27,8 +27,9 @@ jobs:
         path: target/site/jacoco/
     - name: Generate coverage badge
       run: |
-        COVERAGE=$(grep -oP '(?<=<td>Total<\/td><td class="bar">)[^<]+' target/site/jacoco/index.html)
+        COVERAGE=$(grep -oP '(?<=<td>Total<\/td><td class="bar">)[^<]+' target/site/jacoco/index.html | sed 's/%//')
         echo "coverage=$COVERAGE" >> $GITHUB_ENV
+        echo "::set-output name=coverage::$COVERAGE"
     - name: Create coverage badge
       uses: schneegans/dynamic-badges-action@v1.7.0
       with:
