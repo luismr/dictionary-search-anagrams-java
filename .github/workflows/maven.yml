@@ -31,18 +31,8 @@ jobs:
         echo "coverage=$COVERAGE" >> $GITHUB_ENV
         echo "::set-output name=coverage::$COVERAGE"
     - name: Create coverage badge
-      uses: schneegans/dynamic-badges-action@v1.7.0
+      uses: codecov/codecov-action@v3
       with:
-        auth: ${{ secrets.GITHUB_TOKEN }}
-        name: coverage
-        label: Coverage
-        value: ${{ env.coverage }}
-        color: green
-        path: badges/coverage.svg
-    - name: Commit coverage badge
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add badges/coverage.svg
-        git commit -m "Update coverage badge" || exit 0
-        git push 
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: target/site/jacoco/jacoco.xml
+        fail_ci_if_error: true 
