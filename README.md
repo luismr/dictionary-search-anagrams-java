@@ -6,7 +6,8 @@
 [![JaCoCo 0.8.x](https://img.shields.io/badge/JaCoCo-Coverage-blue.svg)](https://www.jacoco.org/jacoco/)  
 
 [![Build Status](https://github.com/luismr/dictionary-search-anagrams-java/actions/workflows/maven.yml/badge.svg)](https://github.com/luismr/dictionary-search-anagrams-java/actions/workflows/maven.yml)
-[![Coverage](https://img.shields.io/badge/coverage-80%25-brightgreen)](https://github.com/luismr/dictionary-search-anagrams-java/actions/workflows/maven.yml)
+[![Coverage](https://github.com/luismr/dictionary-search-anagrams-java/blob/main/badges/jacoco.svg)](https://github.com/luismr/dictionary-search-anagrams-java/actions/workflows/maven.yml)
+[![Branches](https://github.com/luismr/dictionary-search-anagrams-java/blob/main/badges/branches.svg)](https://github.com/luismr/dictionary-search-anagrams-java/actions/workflows/maven.yml)
 
 A Java library for searching anagrams in a dictionary with different implementations.
 

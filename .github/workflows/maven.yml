@@ -24,4 +24,19 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: coverage-report
-        path: target/site/jacoco/ 
+        path: target/site/jacoco/
+    - name: Generate JaCoCo Badge
+      uses: cicirello/jacoco-badge-generator@v2
+      with:
+        jacoco-csv-file: target/site/jacoco/jacoco.csv
+        generate-branches-badge: true
+        badges-directory: badges
+        fail-on-coverage-decrease: true
+        minimum-coverage: 80
+    - name: Commit Badges
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add badges/
+        git commit -m "Update coverage badges" || exit 0
+        git push 
